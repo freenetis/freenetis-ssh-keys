@@ -5,3 +5,7 @@ Synchronize public SSH keys of device admins in order to allow access via SSH to
 
 For more informations see <http://wiki.freenetis.org/index.php/Instalace#Bal.C3.ADk_freenetis-ssh-keys>.
 
+Changelog
+---------
+
+Changelog in debian format is available [here](deb/changelog).
