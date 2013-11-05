@@ -5,7 +5,7 @@
 #  Description: This script updates public SSH keys of admins of the device    #
 #  given by his freenetIS ID.                                                  #
 #                                                                              #
-#  Version: 0.2.0                                                              #
+#  Version: 0.2.1                                                              #
 #                                                                              # 
 ################################################################################
 

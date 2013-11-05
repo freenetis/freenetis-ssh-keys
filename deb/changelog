@@ -1,3 +1,8 @@
+freenetis-ssh-keys (0.2.1) stable; urgency=low
+  * Fixes in DEBIAN package
+  * Added manual for sync script
+ -- Ondrej Fibich <ondrej.fibich@gmail.com>  Tue, 05 Nov 2013 15:13:43 +0100
+
 freenetis-ssh-keys (0.2.0) stable; urgency=low
   * First release
  -- Ondrej Fibich <ondrej.fibich@gmail.com>  Mon, 20 Aug 2012 10:42:19 +0200
