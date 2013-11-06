@@ -23,7 +23,6 @@ cd deb_packages/tmp
 mkdir -m 755 DEBIAN
 mkdir -m 755 etc
 mkdir -m 755 etc/freenetis
-mkdir -m 755 etc/cron.d
 mkdir -m 755 usr
 mkdir -m 755 usr/sbin
 mkdir -m 755 usr/share
@@ -35,7 +34,6 @@ mkdir -m 755 usr/share/man/man1
 # copy content of package ######################################################
 cp ../../../freenetis-ssh-keys-sync.sh usr/sbin/freenetis-ssh-keys-sync
 cp ../../../freenetis-ssh-keys.conf etc/freenetis/
-cp ../../freenetis-ssh-keys.cron etc/cron.d/freenetis-ssh-keys
 
 # create info files ############################################################
 
@@ -97,15 +95,16 @@ find * -type f ! -regex '^DEBIAN/.*' -exec md5sum {} \; >> DEBIAN/md5sums
 # scripts ######################################################################
 
 cat ../../postinst >> DEBIAN/postinst
+cat ../../prerm >> DEBIAN/prerm
 cat ../../postrm >> DEBIAN/postrm
 cat ../../templates >> DEBIAN/templates
 cat ../../config >> DEBIAN/config
 cat ../../conffiles >> DEBIAN/conffiles
 
 chmod 644 DEBIAN/control DEBIAN/md5sums DEBIAN/templates DEBIAN/conffiles \
-		  etc/freenetis/freenetis-ssh-keys.conf etc/cron.d/freenetis-ssh-keys
+		  etc/freenetis/freenetis-ssh-keys.conf
 
-chmod 755 DEBIAN/postinst DEBIAN/postrm DEBIAN/config \
+chmod 755 DEBIAN/postinst DEBIAN/postrm DEBIAN/prerm DEBIAN/config \
 		  usr/sbin/freenetis-ssh-keys-sync
 
 # create deb ###################################################################
@@ -113,7 +112,6 @@ chmod 755 DEBIAN/postinst DEBIAN/postrm DEBIAN/config \
 # change owner of files to root (security)
 cd ..
 fakeroot chown -hR root:root *
-fakeroot chmod g-w tmp/etc/cron.d/freenetis-ssh-keys
 
 # make package
 fakeroot dpkg-deb -b tmp ${NAME}_${VERSION}+${DEBIAN}.deb
