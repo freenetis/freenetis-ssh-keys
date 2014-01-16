@@ -5,11 +5,23 @@
 #  Description: This script updates public SSH keys of admins of the device    #
 #  given by his freenetIS ID.                                                  #
 #                                                                              #
-#  Version: 0.2.1                                                              #
+#  Version: 0.2.2                                                              #
 #                                                                              # 
 ################################################################################
 
+# Version
+VERSION="0.2.2"
+
+# Config file
 CONFIG=/etc/freenetis/freenetis-ssh-keys.conf
+
+# Vesion info? Only possible arg.
+if [ $# -eq 1 ]; then
+	if [ "$1" == "version"  ]; then
+		echo "$VERSION"
+		exit 0
+	fi
+fi
 
 # Load variables
 if [ -e $CONFIG ]; then 

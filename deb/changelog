@@ -1,3 +1,7 @@
+freenetis-ssh-keys (0.2.2) stable; urgency=hight
+  * Adds support for version displaying
+ -- Ondrej Fibich <ondrej.fibich@gmail.com>  Thu, 16 Jan 2014 20:58:13 +0100
+
 freenetis-ssh-keys (0.2.1) stable; urgency=low
   * Fixes in DEBIAN package
   * Added manual for sync script
