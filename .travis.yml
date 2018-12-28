@@ -10,6 +10,8 @@ addons:
       - fakeroot
       - lintian
       - debconf
+      - wget
+      - ssh
 
 before_install:
   - docker pull debian:squeeze

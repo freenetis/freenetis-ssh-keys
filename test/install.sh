@@ -20,11 +20,7 @@ db_set freenetis-ssh-keys/device_id "1" || true
 
 echo "Install deb package"
 apt-get update -q
-if apt --version >/dev/null 1>&2; then
-	apt install -q -y "$DEB"
-else
-	dpkg -i "$DEB" || apt-get install -q -y -f
-fi
+dpkg -i "$DEB" || apt-get install -q -y -f --force-yes
 
 echo "Util test"
 $UNIT version
