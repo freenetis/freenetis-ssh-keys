@@ -14,7 +14,8 @@ CONFIG=/etc/freenetis/freenetis-ssh-keys.conf
 export DEBIAN_FRONTEND=noninteractive
 
 echo "Change configuration"
-sed -i 's/^DEVICE_ID=.*/DEVICE_ID=1/' $CONFIG
+db_set freenetis-ssh-keys/path_freenetis "http://localhost/freenetis"
+db_set freenetis-ssh-keys/device_id "1"
 
 echo "Install deb package"
 apt-get update -q
