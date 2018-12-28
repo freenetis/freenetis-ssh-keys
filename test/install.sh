@@ -16,8 +16,11 @@ export DEBIAN_FRONTEND=noninteractive
 echo "Install deb package"
 apt-get update -q
 if apt --version >/dev/null 1>&2; then
+  echo "Installing using apt"
 	apt install -q -y "$DEB"
 else
+  echo "Installing using dpkg"
+  apt-get install -q -y wget ssh
 	dpkg -i "$DEB" || apt-get install -q -y -f
 fi
 
