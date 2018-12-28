@@ -14,6 +14,7 @@ CONFIG=/etc/freenetis/freenetis-ssh-keys.conf
 export DEBIAN_FRONTEND=noninteractive
 
 echo "Change configuration"
+. /usr/share/debconf/confmodule
 db_set freenetis-ssh-keys/path_freenetis "http://localhost/freenetis"
 db_set freenetis-ssh-keys/device_id "1"
 
