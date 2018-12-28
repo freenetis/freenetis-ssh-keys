@@ -13,14 +13,18 @@ CONFIG=/etc/freenetis/freenetis-ssh-keys.conf
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Update apt
+apt-get update -q
+# Install dependencies
+apt-get install -q -y debconf wget ssh
+
 echo "Change configuration"
 . /usr/share/debconf/confmodule
 db_set freenetis-ssh-keys/path_freenetis "http://localhost/freenetis" || true
 db_set freenetis-ssh-keys/device_id "1" || true
 
 echo "Install deb package"
-apt-get update -q
-dpkg -i "$DEB" || apt-get install -q -y -f --force-yes
+dpkg -i "$DEB"
 
 echo "Util test"
 $UNIT version
