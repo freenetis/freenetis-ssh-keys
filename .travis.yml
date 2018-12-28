@@ -9,6 +9,7 @@ addons:
     packages:
       - fakeroot
       - lintian
+      - debconf
 
 before_install:
   - docker pull debian:squeeze
