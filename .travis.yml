@@ -11,7 +11,6 @@ addons:
       - lintian
 
 before_install:
-  - docker pull debian:lenny
   - docker pull debian:squeeze
   - docker pull debian:wheezy
   - docker pull debian:jessie
@@ -23,9 +22,6 @@ script:
   - DEB_PREFIX=deb_packages/freenetis-ssh-keys_${VERSION}
   # Build and test on different platforms
   - cd deb
-  # Squeeze (no install test)
-  - /bin/sh ./debianization.sh "$VERSION" lenny
-  - lintian ${DEB_PREFIX}+lenny.deb
   # Squeeze (no install test)
   - /bin/sh ./debianization.sh "$VERSION" squeeze
   - lintian ${DEB_PREFIX}+squeeze.deb
