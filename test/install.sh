@@ -15,8 +15,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "Change configuration"
 . /usr/share/debconf/confmodule
-db_set freenetis-ssh-keys/path_freenetis "http://localhost/freenetis"
-db_set freenetis-ssh-keys/device_id "1"
+db_set freenetis-ssh-keys/path_freenetis "http://localhost/freenetis" || true
+db_set freenetis-ssh-keys/device_id "1" || true
 
 echo "Install deb package"
 apt-get update -q
