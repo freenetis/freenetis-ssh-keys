@@ -1,0 +1,43 @@
+sudo: false
+language: generic
+
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - fakeroot
+      - lintian
+
+before_install:
+  - docker pull debian:lenny
+  - docker pull debian:squeeze
+  - docker pull debian:wheezy
+  - docker pull debian:jessie
+  - docker pull debian:stretch
+
+script:
+  # Preparations
+  - VERSION="`/bin/bash ./freenetis-ssh-keys-sync.sh version`"
+  - DEB_PREFIX=deb_packages/freenetis-ssh-keys_${VERSION}
+  # Build and test on different platforms
+  - cd deb
+  # Squeeze (no install test)
+  - /bin/sh ./debianization.sh "$VERSION" lenny
+  - lintian ${DEB_PREFIX}+lenny.deb
+  # Squeeze (no install test)
+  - /bin/sh ./debianization.sh "$VERSION" squeeze
+  - lintian ${DEB_PREFIX}+squeeze.deb
+  # Wheezy
+  - /bin/sh ./debianization.sh "$VERSION" wheezy
+  - lintian ${DEB_PREFIX}+wheezy.deb
+  - docker run -v $TRAVIS_BUILD_DIR:/freenetis debian:wheezy /freenetis/test/install.sh /freenetis/deb/${DEB_PREFIX}+wheezy.deb
+  # Jessie
+  - /bin/sh ./debianization.sh "$VERSION" jessie
+  - lintian ${DEB_PREFIX}+jessie.deb
+  - docker run -v $TRAVIS_BUILD_DIR:/freenetis debian:jessie /freenetis/test/install.sh /freenetis/deb/${DEB_PREFIX}+jessie.deb
+  # Stretch
+  - /bin/sh ./debianization.sh "$VERSION" stretch
+  - lintian ${DEB_PREFIX}+stretch.deb
+  - docker run -v $TRAVIS_BUILD_DIR:/freenetis debian:stretch /freenetis/test/install.sh /freenetis/deb/${DEB_PREFIX}+stretch.deb
