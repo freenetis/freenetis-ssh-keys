@@ -7,6 +7,8 @@
 #
 ################################################################################
 
+set -e
+
 if [ $# -ne 2 ]; then
     echo "Wrong arg count.. Terminating"
     exit 1
@@ -120,4 +122,3 @@ fakeroot dpkg-deb -b tmp ${NAME}_${VERSION}+${DEBIAN}.deb
 
 # clean
 rm -rf tmp
-
